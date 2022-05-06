@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://kit.fontawesome.com/2c8175fde4.js" crossorigin="anonymous"></script>
+        <style>
+        body {
+            min-height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        img {
+            object-fit: contain;
+            display: block;
+            /* border: 5px solid rgb(61, 54, 54); */
+            max-width: 800px;
+            max-height: 700px;
+        }
+        .imgcontent{
+            width: 800px;
+            height: 700px;
+            display:  flex;
+            margin-left: auto;
+            margin-right: auto;
+            justify-content: center;
+            object-fit: contain;
+        }
+        .content-container{
+            margin: 1.25% 14.62% 1.25% 14.62%;
+            background-color:rgb(61, 54, 54);
+            border-radius: 10px;
+
+        }
+        .text-container{
+            margin: 1.25% 14.62% 1.25% 14.62%;
+            padding: 25px 0px 15px 0px;
+            background-color:rgb(61, 54, 54);
+            border-radius: 10px;
+        }
+        .title{
+            color:rgb(255, 255, 255);
+            font-family: "Cousine", monospace;
+            font-size: 2.7vw;
+            margin-top: 25px;
+            margin-left: 25px;
+            margin-right: 0px;
+        }
+        .back-button{
+            z-index: 4; 
+            width: 60px; 
+            max-width: 265px; 
+            top: 80px; 
+            position: fixed;
+            font-size: 48px; 
+            color: rgb(255, 255, 255);
+            background-color: rgb(41, 36, 36);
+            border: 0;
+            margin: 0px 3.745%;
+            border-radius: 100%;
+        }
+        .buttons{
+            font-size: 1.5vw;
+            background-color: rgb(61, 54, 54);
+            border: none;
+            color: rgb(255, 255, 255);
+        }
+        .back-button:hover{ background-color: rgb(61, 54, 54);}
+        .text{
+            color:rgb(255, 255, 255);
+            font-family: "Cousine", monospace;
+            font-size: 1.5vw;
+            margin-left: 25px;
+            margin-right: 25px;
+            /* text-align: justify; */
+        }
+        /* @import url('https://fonts.googleapis.com/css2?family=Cousine:ital@1&display=swap'); */
+        </style>
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Cousine" />
+    </head>
+    <div class = "back-button">
+        <button class = "back-button" type="button" onclick="history.back()"><i class="fas fa-arrow-left"></i></button>
+    </div>
+    <body style="background-color:rgb(41, 36, 36);">
+        
+        <div class = content-container style = "width: 70.88%; height:87.5%;">
+            <div class = imgcontent style="position:relative;">
+                <img src = {{img}}>
+                <form class = 'text' style = 'font-size:2.5vw ; background-color: rgb(61, 54, 54); position:absolute; right: 0; bottom: 0; margin-right: 0;' method="post">
+                    <button class = 'buttons' style = ' font-size:2.5vw; background-color: rgb(61, 54, 54);'type = 'submit' name='instr' value='upvotepost'><i class="fas fa-arrow-alt-circle-up"></i></button>{{likes}}<button class = 'buttons' style = ' font-size:2.5vw; background-color: rgb(61, 54, 54);' type="submit" name='instr' value='downvotepost'><i class="fas fa-arrow-alt-circle-down"></i></button><button class = 'buttons' style = ' font-size:2.5vw; background-color: rgb(61, 54, 54);'type = 'submit' name='instr' value='savelater'><i class="fas fa-bookmark"></i></button>
+                </form>
+            </div>
+            
+        </div>
+        <div class = text-container>
+            <div style = "margin-left:25px;"><span class = title>{{title}} </span><span style="text-transform: capitalize; color:rgb(255, 255, 255);
+            font-family: 'Cousine', monospace, sans-serif; font-size: 2.7vw; margin-right: 25px">[{{type}}]</span></div><br>
+            <p class = text>&nbsp&nbsp{{text}}</p>
+            <form method='post' id = 'form'>
+                <input type = hidden name = instr value = 'clickedlink'>
+                <p class = text>Find out more <a onclick='document.getElementById("form").submit();' id = 'link' href = {{link}} target="_blank" style=" color: oldlace; 
+                    font-family: 'Cousine', monospace;
+                    font-size: 1.5vw;">here</a>
+                </p>
+            </form>
+        </div>
+        <span style="color:rgb(255, 255, 255); font-family: 'Cousine', monospace; font-size: 2vw; margin-left: 16.08%;">Comments</span>
+        <div class = 'text-container'>
+            <form method = 'post' onsubmit='addCharacter()'>
+                <input class='content-container text' style = 'margin:2% 2% 2% 2%; font-size: 1.8vw; padding-right:2%;' placeholder = 'Comment' id='comment' name='instr' />
+            </form>
+        </div>
+        <div class = 'text-container' style="padding: 3px  0px 15px 0px;">
+            <button class = 'buttons' style = 'border-radius: 25px; font-size:1.5vw; background-color: rgb(110, 103, 103); position:relative; left: 80%; bottom: 0; margin-top: 1%; 'onclick="location.href='/post/{{id}}/true';">Top Comments</button><button class = 'buttons' style = 'border-radius: 25px; font-size:1.5vw; background-color: rgb(110, 103, 103); position:relative; left: 40%; bottom: 0; margin-top: 1%;'onclick="location.href='/post/{{id}}/false';">Newest comments</button>
+            <p class = text style = "margin: 5px 25px 10px 25px;">{% for comment in comments %}
+                <div class='text' style='margin-bottom: 20px;'>
+                    <span style = "font-size: 1.3vw; font-weight: bold; padding-right:2%;"> {{comment[1]}}</span><span style = "font-size: 1vw;">{{comment[3]}}</span>
+                    <br>{{comment[0]}}<br>
+                    <form method="post">
+                        <button class = 'buttons' type = 'submit' name='instr' value='upvotecomment{{comment[4]}}'><i class="fas fa-arrow-alt-circle-up"></i></button>{{comment[2]}}<button class = 'buttons' type="submit" name='instr' value='downvotecomment{{comment[4]}}'><i class="fas fa-arrow-alt-circle-down"></i></button>
+                    </form>
+                </div>
+                {% endfor %}</p>
+            {% if not comments %}
+            <p class = text style = "margin: 10px 25px 10px 25px; font-size: 3vw;">No comments yet</p>
+            {% endif%}
+        </div>
+     </body>
+     <script>
+         const link = document.getElementById('link')
+         link.addEventListener("click", () => {fetch('/linkclicked', {method: "POST",  body: JSON.stringify({id: ''})})
+        .then(response => response.json())
+        .then(data => console.log(JSON.stringify(data)))});
+         function addCharacter(i){
+            var elem = document.getElementById('comment');
+            elem.value += ' ';
+        }
+     </script>
+</html>

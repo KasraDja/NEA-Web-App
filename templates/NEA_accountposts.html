@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://kit.fontawesome.com/2c8175fde4.js" crossorigin="anonymous"></script>
+        <style>
+        .posts{
+            margin-top: 5%;
+            margin-left: 5%;
+            margin-right: 5%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .content-container{
+            margin: 1.25% 14.62% 1.25% 14.62%;
+            background-color:rgb(61, 54, 54);
+            border-radius: 10px;
+
+        }
+        .post{
+            background-color: rgb(61, 54, 54);
+            border-radius: 20px;
+            width:min-content;
+            height:min-content;
+            position:relative;
+            margin:0.5%;
+            flex: 1 0 10%;
+            display:flex;
+        }
+        .title{
+            color:rgb(255, 255, 255);
+            font-family: "Cousine", monospace;
+            font-size: 1.5vw;
+            margin-top: 10px;
+            margin-right: 0px;
+            word-spacing: -3px;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Cousine:ital@1&display=swap');
+        .text{
+            color:rgb(255, 255, 255);
+            font-family: "Cousine", monospace;
+            font-size: 1.5vw;
+        }
+        .img{
+            max-width: 700px;
+            max-height: 800px;
+            object-fit: contain;
+            border-radius: 20px;
+            justify-content: center;
+            padding-right: 5px;
+        }
+        
+        </style>
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Cousine" />
+    </head>
+    <body style="background-color:rgb(41, 36, 36);" onload="MyFunction()">
+        <p id='title' class = 'text' style="margin-top: 5%; margin-left: 7%; font-size: 2.2vw;">{{title}}</p>
+        {% for post in posts %}
+        <div class="posts">
+            <div class ='post' onclick="location.href='/post/{{post[4]}}/false';" style="cursor: pointer;">
+                <span class = 'text' style="position: absolute; top: 0; padding-left:5%; padding-top: 1%;">{{post[5]}}</span>
+                <img class = 'img' src = {{post[1]}}>
+                <span class = title>{{post[0]}}&nbsp&nbsp<span style="text-transform: capitalize;">[{{post[3]}}]&nbsp&nbsp<i class="fas fa-arrow-alt-circle-up"></i><i class="fas fa-arrow-alt-circle-down"></i>{{post[2]}}</span><form id = 'form' class = 'text' method='post'><input type='hidden' name = 'instr' value = '{{post[4]}}'/><button name = 'button' class=" title content-container" style = 'margin-right:10%;'type = 'submit' onclick="document.getElementById('form').submit(); event.stopPropagation();">Remove</button></form></span>
+            </div>
+        </div>
+        </div>{% endfor %}
+        <script>
+            function MyFunction() {
+                var x = document.getElementById('title').innerHTML;
+                if (x=='Liked posts'){
+                    var y = document.getElementsByName('button');
+                    for (let i = 0; i < y.length; i+1) {
+                        y[0].remove();
+                        }
+                }
+            }
+        </script>
+    </body>
+</html>

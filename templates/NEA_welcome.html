@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<title>Welcome</title>
+<head>
+    <style>
+        .text{color:rgb(255, 255, 255);
+            font-family: "Cousine", monospace;
+            font-size: 1.5vw;
+            margin-left: 25px;
+            margin-right: 25px;
+            text-align: justify;
+        }
+        .content-container{
+            margin: 1.25% 5% 1.25% 5%;
+            width: 30%;
+            font-size: 1.5vw;
+            background-color:rgb(61, 54, 54);
+            border-radius: 10px;
+            color:rgb(255, 255, 255);
+            font-family: "Cousine", monospace;
+            font-size: 1.5vw;}
+        
+        @import url('https://fonts.googleapis.com/css2?family=Cousine:ital@1&display=swap');
+    </style>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Cousine" />
+</head>
+<body style="background-color:  rgb(41, 36, 36);" class = 'text'>
+<h1 style="font-size: 2.7vw; font-weight: normal; text-align: center;" class = 'text'>
+    Welcome
+</h1>
+<div class="content-container text" style='text-align: center; margin: auto;'>
+    Select your main interests
+</div>
+<form style='text-align: center;' action='/welcome' method="POST">
+
+    {% for checkbox in list %}
+    <input type ="checkbox" id={{checkbox}} name='cate' value={{checkbox}}/>
+    <label for={{checkbox}}> {{checkbox}}</label><br>
+    {% endfor %}
+    <br><input class='content-container' style="width:auto; " type="submit" id='submit' value='Submit'/><br>
+    {{msg}}<br>
+    <label id = link href="/login"Go to login page></label>
+</form>
+</body>
+</html>

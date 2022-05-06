@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<title>Homepage</title>
+<head>
+    <script src="https://kit.fontawesome.com/2c8175fde4.js" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cousine&display=swap');
+        .posts{
+            margin-top: 5%;
+            margin-left: 5%;
+            margin-right: 5%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .post{
+            background-color: rgb(61, 54, 54);
+            border-radius: 20px;
+            width:min-content;
+            height:min-content;
+            position:relative;
+            margin:0.5%;
+        }
+        .post-link{
+            display: block;
+            height: 100%;
+            width: 100%;
+        }
+        .img{
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 20px;
+        }
+        .text{
+            color:rgb(255, 255, 255);
+            font-family: "Cousine", monospace;
+            font-size: 1.5vw;
+        }
+        .title{
+            color:rgb(255, 255, 255);
+            font-family: "Cousine", monospace;
+            font-size: 1.5vw;
+            margin-top: 10px;
+            margin-right: 0px;
+            word-spacing: -3px;
+        }
+        .searchbar{
+            background-color:rgb(61, 54, 54);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body style="background-color:  rgb(41, 36, 36);">
+    <div style ='text-align:center;'>
+        <span class = text  style='text-transform: capitalize; font-size: 2.1vw; background-color: rgb(61, 54, 54); display: inline-block; border-radius: 50%; height: 20%; width: 3%;' onclick="location.href='/account';" style="cursor: pointer;">{{letter}}</span>
+    <form style="display:inline-block;" method = 'post'>
+        <input class='searchbar text' size = '51' style = 'margin-top: 5%;margin-left:5%; margin-right:5%; font-size: 2.1vw;' placeholder = 'Search' name='searchterm'/>
+        <input type = 'hidden'/>
+    </form>
+</div>      
+    <div class="posts">{% for post in posts %}
+        <div class = 'post' onclick="location.href='/post/{{post[4]}}/false';" style="cursor: pointer;">
+            <span class = 'text' style="position: absolute; top: 0; padding-left:5%; padding-top: 1%;">{{post[5]}}</span>
+            <img class = 'img' src = {{post[1]}}><br>
+            <div style="padding: 2%">
+            <span class = title>{{post[0]}}<span style="text-transform: capitalize;">[{{post[3]}}]&nbsp&nbsp</span></span><span class = 'text' style="font-size: 1.4vw;"><i class="fas fa-arrow-alt-circle-up"></i><i class="fas fa-arrow-alt-circle-down"></i>{{post[2]}}</span>
+            </div>
+        </div>
+    {% endfor %}</div>
+    {% if not posts %}
+            <p class = text style = "margin: 10px 25px 10px 25px; font-size: 3vw; text-align: center;">No search results found</p>
+        {% endif%}
+</body>

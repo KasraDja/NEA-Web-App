@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/2c8175fde4.js" crossorigin="anonymous"></script>
+<style>
+    .title{
+            color:rgb(255, 255, 255);
+            font-family: "Cousine", monospace;
+            font-size: 1.5vw;
+            margin-top: 10px;
+            margin-right: 0px;
+            word-spacing: -3px;
+            word-wrap: break-word;
+        }
+    .div-left {
+        width: 50%;
+        height:80%;
+        position: absolute;
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 50%;
+        margin: 2%;
+        margin-top: 10%;
+        }
+    .div-right {
+        width: 50%;
+        height: 80%;
+        position: absolute;
+        top:0;
+        bottom: 0;
+        left: 50%;
+        right: 0;
+        margin-left: 2%;
+        margin-top: 8%;
+        }
+    .img{
+            max-width: 400px;
+            max-height: 500px;
+            object-fit: contain;
+            border-radius: 20px;
+            justify-content: center;
+            padding-right: 5px;
+        }
+    .text{
+            color:rgb(255, 255, 255);
+            font-family: "Cousine", monospace;
+            font-size: 1.5vw;
+        }
+    .posts{
+            margin-top: 5%;
+            margin-left: 5%;
+            margin-right: 5%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    .content-container{
+            margin: 1.25% 14.62% 1.25% 14.62%;
+            background-color:rgb(61, 54, 54);
+            border-radius: 10px;
+            
+
+        }
+    .post{
+            background-color: rgb(61, 54, 54);
+            border-radius: 20px;
+            height:min-content;
+            position:relative;
+            margin:1%;
+            flex: 1 0 10%;
+            display:flex;
+            margin-left: 5%;
+        }
+    .buttons{
+        background-color: rgb(110, 103, 103);
+        width: 6vh;
+        border-radius: 25px;
+    }
+    .searchbar{
+            background-color:rgb(61, 54, 54);
+            border-radius: 10px;
+        }
+</style>
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Cousine" />
+</head>
+<body style="background-color:  rgb(41, 36, 36);">
+    <p class = 'title' style="margin-top: 5%; margin-left: 7%; font-size: 2.7vw;">Friend activity</p>
+    <div class="div-left">
+        <div class="posts">
+            {% for post in posts %}
+            <div class ='post title' onclick="location.href='/post/{{post[4]}}/false';" style="cursor: pointer;">
+                <div class = 'text' style="position: absolute; top: 0; padding-left:5%; padding-top: 1%;">{{post[5]}}</div>
+                <img class = 'img' src = {{post[1]}}>
+                <label>{{post[0]}}&nbsp&nbsp<label style="text-transform: capitalize;">[{{post[3]}}]</label>&nbsp&nbsp<i class="fas fa-arrow-alt-circle-up"></i><i class="fas fa-arrow-alt-circle-down"></i>{{post[2]}}<br><br>{{post[6]}}</label>
+            </div>{% endfor %}
+        </div>
+        </div>
+    </div>
+    <div class='div-right'>
+        <div class="div-left">
+            <div class = 'text' style = 'padding-left:5px; width:20vw; border-radius: 25px; font-size:1.5vw; background-color: rgb(61, 54, 54); margin-top: 1%; margin-bottom:5px;'>Requesting users</div>
+            <form style="position:-ms-page;" method = 'POST'>
+                {% for request in requests %}
+                <div class = 'text' style = 'padding-left:5px; width:20vw; border-radius: 25px; font-size:1vw; background-color: rgb(61, 54, 54); margin-top: 1%; margin-bottom:5px;'>{{request[1]}}<button type='submit'class="buttons text" style = 'font-size: 1vw;' name='instr' value="AddUser{{request[0]}}">Add</button><button type='submit'class="buttons text" style = 'font-size: 1vw; width:5vw;' name='instr' value="IgnoreUser{{request[0]}}">Ignore</button><br>
+                </div>{% endfor %}
+            </form>
+        </div>
+        <div class="div-right">
+            <form style="position:-ms-page;" method = 'post' onsubmit="addCharacter()">
+                <div class = 'text' style = 'padding-left:5px; width:12vw; border-radius: 25px; font-size:1.5vw; background-color: rgb(61, 54, 54); margin-top: 1%; margin-bottom:5px;'>Search users</div>
+                <input class='searchbar text' style = ' padding-left:5px; width:12vw; font-size: 2.1vw;' id = 'search' placeholder = 'Search' name='instr'/><br>
+            </form>
+            <form style="position:-ms-page;" method = 'POST'>
+                {% for user in search %}
+                <div class = 'text' style = 'padding-left:5px; width:12vw; border-radius: 25px; font-size:1vw; background-color: rgb(61, 54, 54); margin-top: 1%; margin-bottom:5px;'>{{user[1]}}<button type='submit'class="buttons text" style = 'font-size: 1vw;' name='instr' value="RequestUser{{user[0]}}">Add</button><br>
+                </div>{% endfor %}
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    function addCharacter(i){
+            var elem = document.getElementById('search');
+            elem.value += ' ';
+        }
+</script>
+</html>

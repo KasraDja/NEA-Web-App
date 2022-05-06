@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<title>Login</title>
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cousine&display=swap');
+        body{font-family: "Cousine", monospace;}
+        .div-right {
+            width: 50%;
+            height: 50%;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 50%;
+            right: 0;
+            margin: auto;}
+        .div-left {
+            width: 50%;
+            height: 50%;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 50%;
+            margin: auto;}
+        .action-form{text-align: center;}
+        .text{
+            color:rgb(255, 255, 255);
+            font-family: "Cousine", monospace;
+            font-size: 1.5vw;
+            margin-left: 25px;
+            margin-right: 25px;
+            text-align: justify;}
+        .content-container{
+            margin: 1.25% 5% 1.25% 5%;
+            width: 70%;
+            font-size: 1.5vw;
+            background-color:rgb(61, 54, 54);
+            border-radius: 10px;
+            color:rgb(255, 255, 255);
+            font-family: "Cousine", monospace;
+            font-size: 1.5vw;}
+    </style>
+</head>
+<body style="background-color:rgb(41, 36, 36);">
+    <div class="div-left" style='height: 70%;  text-align: center;'>
+        <span class = 'text' style='font-size: 2vw;'> Your Journey Begins here</span>
+    </div>
+    <div class='div-left'>
+        <img style='margin-left:5%; position:absolute; top:0; left:0; object-fit: contain;'src="https://cdn.waterstones.com/override/v1/large/9780/1419/9780141978611.jpg">
+        <img style='margin-right: 15%; width: 250px; height: 150px; object-fit: contain; position:absolute; bottom:0; right:0;' src='https://cdn0.documentaryheaven.com/wp-content/thumbnails/13397.jpg'>
+        <img style=" margin-right:15%; width:250 px; height: 245px; object-fit:contain; position:absolute; top:0; right:0" src='https://www.cam.ac.uk/sites/www.cam.ac.uk/files/styles/section-landing-page-250x250/public/book-of-deer-web-crop.jpg?itok=CQpVKhik'>
+    </div>
+    <div class='div-right'>
+        <form class='action-form' action='/login' method = 'POST'>
+            <h1 style="color:rgb(255, 255, 255); margin-top: 0px">Login</h1>
+            <input id='primary-input' class= "content-container" placeholder = 'Username/Email' type="text" id="user" name='user' required /> <br>
+            <input id='psw-input'class='content-container' placeholder = 'Password' type='password' id='password' name='password' required/><br>
+            <input class='content-container' style="width:auto; " type="submit" id='submit' value='Login'/><br>
+            <span class = text>{{msg}}</span>
+            <br><a class = text style="color: oldlace;"href="/signup">Sign up</a>
+        </form>
+    </div>
+</body>
+</html>

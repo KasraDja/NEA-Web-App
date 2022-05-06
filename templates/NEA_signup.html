@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <title>Sign up</title>
+    <head>
+      <style>
+         @import url('https://fonts.googleapis.com/css2?family=Cousine&display=swap');
+         .text{
+            color:rgb(255, 255, 255);
+            font-family: "Cousine", monospace;
+            font-size: 1.5vw;
+            margin-left: 25px;
+            margin-right: 25px;
+            text-align: justify;
+         }
+         .div-right {
+            width: 50%;
+            height: 50%;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 50%;
+            right: 0;
+            margin: auto;
+         }
+         .content-container{
+            margin: 1.25% 3% 1.25% 5%;
+            width: 40%;
+            font-size: 1.5vw;
+            background-color:rgb(61, 54, 54);
+            border-radius: 10px;
+            color:rgb(255, 255, 255);
+            font-family: "Cousine", monospace;
+            font-size: 1.5vw;
+         }
+         .text-container{
+            margin: 1.25% 14.62% 1.25% 14.62%;
+            padding: 25px 0px 15px 0px;
+            background-color:rgb(61, 54, 54);
+            border-radius: 10px;
+         }
+        .center {
+            margin: auto;
+            width: 60%;
+            padding: 10px;
+           }
+         .div-left {
+            width: 50%;
+            height: 80%;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 50%;
+            margin: auto;
+         }
+         .action-form{
+            text-align: center;
+         }
+     </style>
+    </head>
+    <body style="background-color:rgb(41, 36, 36);">
+      <div class = 'div-left'>
+         <form class = 'action-form text' action="/signup" method="POST">
+            <h3 style = 'text-align: center;'>Sign Up!</h3>
+            <input type="text" class='content-container text' placeholder='Firstname' name="firstname" required /> <br>
+            <br><input type="text" class='content-container text' placeholder='Surname'name="surname" required /><br>
+            <br><input type="email" class='content-container text' placeholder='Email address' name="email" required /><br>
+            {{email_conf}}<br>
+            <input type='text'class='content-container text' placeholder='Username' name='username' required /><br>
+            {{username_conf}}<br>
+            <input type="password"class='content-container text'  placeholder='Password' name="password" id='password' onkeyup='PasswConfirm()' required /><br>
+            <input type='password' class='content-container text' name='cpassword' placeholder='Confirm password' id='cpassword' onkeyup='PasswConfirm()' required/><br><label id='confirmation'></label><br>
+            <input style="width:auto;" class='center content-container text' type="submit" value="Submit" id='submit'/><br>
+            {{success}}<br>
+            <br><a class = 'text' style = 'color: oldlace; text-align: center;' href="/login">Go to login page</a>
+         </form>
+         <script type = 'text/javascript'>
+            var PasswConfirm = function() {
+               var passw = document.getElementById("password").value;
+               var cpassw = document.getElementById("cpassword").value;
+               if (passw != cpassw) {
+                  document.getElementById('confirmation').innerHTML= 'Passwords do not match';
+                  document.getElementById('submit').disabled = true;
+               } else { 
+                  document.getElementById('confirmation').innerHTML= 'Passwords match';
+                  document.getElementById('submit').disabled = false;
+               }
+            }
+         </script>
+      </div>
+      <div class = 'div-right'>
+         <img style='margin-left:5%; width: 225px; position:absolute; top:0; left:0; object-fit: contain;'src="https://cdn.waterstones.com/bookjackets/large/9781/7850/9781785039065.jpg">
+         <img style='margin-right: 15%; width: 300px; height: 250px; object-fit: contain; position:absolute; bottom:0; right:0;' src='https://cdn0.documentaryheaven.com/wp-content/thumbnails/16169-770x433.jpg?x53432'>
+         <img style=" margin-right:15%; width:250 px; height: 150px; object-fit:contain; position:absolute; top:0; right:0" src='https://www.cam.ac.uk/sites/www.cam.ac.uk/files/styles/content-885x432/public/news/research/news/puffins-dec132020seppohakkinenthird-eyephotography.jpg?itok=IlmpxsFF'>
+      </div>
+   </body>
+</html>
